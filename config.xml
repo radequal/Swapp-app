@@ -1,15 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.swapp" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<!-- <?xml version="1.0" encoding="UTF-8" standalone="yes"?> -->
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget   xmlns="http://www.w3.org/ns/widgets"
+          xmlns:cdv="http://cordova.apache.org/ns/1.0"
+          xmlns:gap="http://phonegap.com/ns/1.0"
+          id="com.swapp"
+          version="0.0.3"
+          versionCode="1">
   <name>Swapp</name>
   <description>
-        An Ionic Framework and Cordova project.
-    </description>
+        Swap your unwanted items with people near you.
+  </description>
   <author email="amir.hosseinirad@gmail.com" href="http://amir.pm/">
       Amir HR
-    </author>
+  </author>
+
   <content src="index.html"/>
   <icon src="res/icon-4.png" />
   <access origin="*"/>
+
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -17,6 +25,8 @@
 
   <gap:plugin name="org.apache.cordova.inappbrowser" version="0.1.0" />
 
+  <gap:platform name="ios" />
+  <gap:platform name="android" />
 
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
