@@ -74,6 +74,7 @@ angular.module('openfb', [])
                     oauthRedirectURL = 'https://www.facebook.com/connect/login_success.html';
                 } else {
                     // Trying to calculate oauthRedirectURL based on the current URL.
+                    // var index = document.location.href.indexOf('index.html');
                     var index = document.location.href.indexOf('#');
                     if (index > 0) {
                         oauthRedirectURL = document.location.href.substring(0, index) + 'oauthcallback.html';

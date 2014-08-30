@@ -1,0 +1,40 @@
+/* SIDEBAR */
+.sidebar {
+  top: 24px;
+  position: relative;
+  z-index: 999;
+  width: 85%;
+  height: 100%;
+    border-right: 1px solid #ddd;
+  background: url('../../img/calm-bg.jpg');
+}
+.sidebar .list {
+  padding-top: 0px;
+  margin-top: -45px;
+}
+.sidebar .profile-cover {
+  height: 122px;
+  /*background: url('../img/fb-cover.jpg') no-repeat;*/
+  background-position: 50% 50%;
+}
+.sidebar .profile-cover img {
+  position: absolute;
+  top: 22px;
+}
+.sidebar .profile-cover h2 {
+  position: absolute;
+  top: 50px;
+  text-shadow: 0px 0px 7px #000000;
+  color: white;
+  font-size: 18px;
+}
+.sidebar small {
+  position: absolute;
+  /*bottom: 5px;*/
+  top: 70px;
+  left: auto;
+  color: white;
+  font-weight: normal;
+  text-shadow: 1px 1px 2px gray;
+  text-decoration: underline;
+}

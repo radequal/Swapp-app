@@ -1,0 +1,65 @@
+#introSlideBox {
+  height: 85%;
+  width: 100%;
+  padding: 0;
+  background: white;
+/* Background vertival */
+  background: -moz-linear-gradient(top,  rgba(255,95,44,0.5) 0%, rgba(243,181,33,0.5) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,95,44,0.5)), color-stop(100%,rgba(243,181,33,0.5)));
+  background: -webkit-linear-gradient(top,  rgba(255,95,44,0.5) 0%,rgba(243,181,33,0.5) 100%);
+  background: -o-linear-gradient(top,  rgba(255,95,44,0.5) 0%,rgba(243,181,33,0.5) 100%);
+  background: -ms-linear-gradient(top,  rgba(255,95,44,0.5) 0%,rgba(243,181,33,0.5) 100%);
+  background: linear-gradient(to bottom,  rgba(255,95,44,0.5) 0%,rgba(243,181,33,0.5) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ff5f2c', endColorstr='#99f3b521',GradientType=0 );
+/* Background radial */
+/*
+  background: -moz-radial-gradient(center, ellipse cover,  rgba(255,95,44,0.6) 0%, rgba(243,181,33,0.6) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,95,44,0.6)), color-stop(100%,rgba(243,181,33,0.6)));
+  background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,95,44,0.6) 0%,rgba(243,181,33,0.6) 100%);
+  background: -o-radial-gradient(center, ellipse cover,  rgba(255,95,44,0.6) 0%,rgba(243,181,33,0.6) 100%);
+  background: -ms-radial-gradient(center, ellipse cover,  rgba(255,95,44,0.6) 0%,rgba(243,181,33,0.6) 100%);
+  background: radial-gradient(ellipse at center,  rgba(255,95,44,0.6) 0%,rgba(243,181,33,0.6) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ff5f2c', endColorstr='#99f3b521',GradientType=1 );
+*/  
+}
+.slider {}
+.slider-slides {}
+.slider-slide {
+  padding-top: 80px;
+  color: #000;
+  /*background-color: #fff;*/
+  text-align: center;
+
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+}
+#introSlideBox ion-slide {
+  padding: 20px;
+}
+
+#IntroLogo {
+  margin: 30px 0px;
+}
+#IntroList {
+  width: 170px;
+  margin: 30px auto;
+  font-size: 20px;
+}
+#IntroList ol {
+  margin-top: 30px;
+}
+#IntroList ol li {
+  text-align: left;
+  list-style: decimal;
+  margin: 10px 0px;
+}
+
+
+/* FACEBOOK */
+#facebook {
+  height: 15%;
+  width: 100%;
+  padding: 10px 10px;
+  background: white;
+  text-align: center;
+}

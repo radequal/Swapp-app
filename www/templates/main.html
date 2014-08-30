@@ -1,0 +1,81 @@
+<ion-side-menus>
+
+  <!-- TOP BAR -->
+  <ion-side-menu-content drag-content="false">
+
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button class="button-icon ion-arrow-left-c">
+      </ion-nav-back-button>
+    </ion-nav-bar>
+
+
+    <ion-nav-buttons side="left">
+      <button menu-toggle="left" class="button button-icon button-clear ion-navicon"></button>
+      <img src="img/logo-header.png" style="margin-top: -4px;">
+    </ion-nav-buttons>
+
+
+    <ion-nav-buttons side="right">
+      <button menu-toggle="right" class="button button-icon button-clear ion-ios7-chatbubble-outline"></button>
+    </ion-nav-buttons>
+
+    <ion-nav-view animation="no-animation" name="swappMenuContent"></ion-nav-view>
+
+  </ion-side-menu-content> 
+  <!-- END TOP BAR -->
+
+  <!-- LEFT MENU -->
+  <ion-side-menu side="left">
+    <ion-content scroll="false" class="sidebar">
+      <div class="list">
+        <a
+          class="item item-thumbnail-left item-icon-left item-icon-right profile-cover"
+          href="#/swapp/profile"
+          menu-close
+          style="
+            background: url('{{ cover }}') no-repeat;
+            background-position: 50% 50%;
+          "
+        >
+        <!-- http://graph.facebook.com/amir.hosseinirad/picture -->
+          <img ng-src="{{ profilePicture }}">
+          <h2>{{ user.name }}</h2>
+          <small>View Profile</small>
+        </a>
+
+        <a class="item item-icon-left" href="#/swapp/items" menu-close>
+          <i class="icon ion-grid"></i> Items
+          <span class="badge badge-dark">0</span>
+        </a>
+
+        <a class="item item-icon-left" href="#/swapp/settings-1" menu-close>
+          <i class="icon ion-gear-a"></i> Settings 1
+        </a>
+
+        <a  class="item item-icon-left" href="#/swapp/settings-2" menu-close>
+          <i class="icon ion-gear-a"></i> Settings 2
+        </a>
+
+        <a  class="item item-icon-left" href="#/swapp/settings-3" menu-close>
+          <i class="icon ion-gear-a"></i> Settings 3
+        </a>
+      </div>
+    </ion-content>
+  </ion-side-menu>
+  <!-- END LEFT MENU -->
+
+  <!-- RIGHT MENU -->
+  <ion-side-menu side="right">
+    <ion-header-bar class="bar-assertive">
+      <h1 class="title">Messages</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ul class="list">
+        <a href="#/swapp/message?messageId=1234" class="item" menu-close>Message 1</a>
+        <a href="#/swapp/message?messageId=5678" class="item" menu-close>Message 2</a>
+      </ul>
+    </ion-content>
+  </ion-side-menu>
+  <!-- END RIGHT MENU -->
+
+</ion-side-menus>

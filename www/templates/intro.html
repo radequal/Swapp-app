@@ -1,0 +1,71 @@
+<ion-view>
+  <!-- 
+  <ion-nav-buttons side="left">
+    <button class="button button-positive button-clear no-animation"
+            ng-click="startApp()" ng-if="!slideIndex">
+      Skip Intro
+    </button>
+    <button class="button button-positive button-clear no-animation"
+            ng-click="previous()" ng-if="slideIndex > 0">
+      Previous
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right"> 
+    <button class="button button-positive button-clear no-animation"
+            ng-click="next()" ng-if="slideIndex != 2">
+      Next
+    </button>
+    <button class="button button-positive button-clear no-animation"
+            ng-click="startApp()" ng-if="slideIndex == 2">
+      Start using Swapp
+    </button>
+  </ion-nav-buttons>
+  -->
+
+  <ion-slide-box id="introSlideBox" on-slide-changed="slideChanged(index)">
+    <!-- SLIDE 1 -->
+    <ion-slide>
+      <h3>Thank you for downloading Swapp! Hi</h3>
+      <div id="IntroLogo">
+        <img src="img/app_icon.png">
+      </div>
+      <p>
+        We've worked super hard to make you happy.
+      </p>
+      <p>
+        But if you are angry, too bad.
+      </p>
+    </ion-slide>
+
+    <!-- SLIDE 2 -->
+    <ion-slide>
+      <h3>Using Swapp</h3>
+      
+      <div id="IntroList">
+        <h5>Just three steps:</h5>
+        <ol>
+          <li>Upload your items</li>
+          <li>Browse Swapp</li>
+          <li>Negotiate</li>
+        </ol>
+      </div>
+    </ion-slide>
+
+    <!-- SLIDE 3 -->
+    <ion-slide>
+      <h3>Any questions?</h3>
+      <p>
+        Too bad!
+      </p>
+    </ion-slide>
+  </ion-slide-box>
+
+
+  <div id="facebook" ng-controller="LoginCtrl">
+    <!-- <button class="button button-block facebook-button" ng-click="facebookLogin()"></button> -->
+    <img src="img/fb_login.png" height="44px" width="200px" ng-click="facebookLogin()">
+    <br>
+    <span class="ion-information-circled"> <small>We'll never post anything on your Facebook account</small></span>
+  </div>
+
+</ion-view>

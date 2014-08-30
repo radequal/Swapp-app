@@ -1,0 +1,64 @@
+<ion-view title="">
+	<ion-content id="mainContent" class="has-header padding" scroll="false">
+
+		<div class="list">
+		  <label class="item item-input item-select">
+		    <div class="input-label">
+		      Category
+		    </div>
+		    <select>
+					<option selected>-- Pick a category --</option>
+					<option>Auto</option>
+					<option>Beauty &amp; Toiletries</option>
+					<option>Books</option>
+					<option>Photography</option>
+					<option>Clothes &amp; Accessories</option>
+					<option>Collectibles</option>
+					<option>DIY</option>
+					<option>Electronics</option>
+					<option>Home &amp; Garden</option>
+					<option>Jewelry</option>
+					<option>Luggage &amp; Travel Accessories</option>
+					<option>Movies</option>
+					<option>Music &amp; Instruments</option>
+					<option>Stationery</option>
+					<option>Shoes, Handbags &amp; Sunglasses</option>
+					<option>Sports</option>
+					<option>Toys</option>
+					<option>Video Games</option>
+					<option>Watches</option>
+					<option>Other</option>
+		    </select>
+		  </label>
+		</div>
+
+		<div animation="slide-left-right-ios7" no-scroll>
+			<pane ng-controller="CardsCtrl" class="pane">
+				<header-bar type="bar-transparent" title="'Help out'"></header-bar>
+				<p style="color:white">Accepted: {{accepted}}, Rejected: {{rejected}}</p>
+
+				<swipe-cards>
+					<swipe-card on-swipe="cardSwiped()" id="start-card">
+					Swipe to begin
+					</swipe-card>
+					<swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)" ng-click="openCardDetails($index)">
+						<div ng-controller="CardCtrl">
+							<a href="#/swapp/details?swappId=$index">
+								<div class="title">
+									{{card.title}}
+								</div>
+								<div class="image">
+									<img ng-src="{{card.image}}">
+								</div>
+							</a>
+							<div class="button-bar">
+								<button class="button button-clear button-positive" ng-click="reject()">No</button>
+								<button class="button button-clear button-positive" ng-click="accept()">Yes</button>
+							</div>
+						</div>
+					</swipe-card>
+				</swipe-cards>
+			</pane>
+		</div>
+	</ion-content>
+</ion-view>

@@ -3,6 +3,13 @@
 /Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard$2.class \
 /Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard$3.class \
 /Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard.class \
+/Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/ant-build/classes/com/ionicframework/swapp/BuildConfig.class \
+/Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/ant-build/classes/com/ionicframework/swapp/R$attr.class \
+/Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/ant-build/classes/com/ionicframework/swapp/R$drawable.class \
+/Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/ant-build/classes/com/ionicframework/swapp/R$string.class \
+/Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/ant-build/classes/com/ionicframework/swapp/R$xml.class \
+/Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/ant-build/classes/com/ionicframework/swapp/R.class \
+/Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/ant-build/classes/com/ionicframework/swapp/Swappapp.class \
 /Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/ant-build/classes/com/ionicframework/swappapp108785/BuildConfig.class \
 /Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/ant-build/classes/com/ionicframework/swappapp108785/R$attr.class \
 /Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/ant-build/classes/com/ionicframework/swappapp108785/R$drawable.class \

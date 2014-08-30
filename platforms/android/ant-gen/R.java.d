@@ -1,4 +1,4 @@
-/Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/ant-gen/com/ionicframework/swappapp108785/R.java \
+/Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/ant-gen/com/ionicframework/swapp/R.java \
  : /Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/res/drawable/icon.png \
 /Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/res/drawable-hdpi/ic_action_next_item.png \
 /Users/amir-personal/Google Drive/Projects/Swapp/Development/PHG/Swapp-app/platforms/android/res/drawable-hdpi/ic_action_previous_item.png \

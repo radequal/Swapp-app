@@ -1,0 +1,58 @@
+<ion-view>
+  <ion-nav-buttons side="left">
+    <button class="button button-positive button-clear no-animation"
+            ng-click="startApp()" ng-if="!slideIndex">
+      Skip Intro
+    </button>
+    <button class="button button-positive button-clear no-animation"
+            ng-click="previous()" ng-if="slideIndex > 0">
+      Previous
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right"> 
+    <button class="button button-positive button-clear no-animation"
+            ng-click="next()" ng-if="slideIndex != 2">
+      Next
+    </button>
+    <button class="button button-positive button-clear no-animation"
+            ng-click="startApp()" ng-if="slideIndex == 2">
+      Start using Swapp
+    </button>
+  </ion-nav-buttons>
+  <ion-slide-box on-slide-changed="slideChanged(index)">
+    <ion-slide>
+      <h3>Thank you for downloading Swapp!</h3>
+      <div id="logo">
+        <img src="/img/app_icon.png">
+      </div>
+      <p>
+        We've worked super hard to make you happy.
+      </p>
+      <p>
+        But if you are angry, too bad.
+      </p>
+    </ion-slide>
+    <ion-slide>
+      <h3>Using Swapp</h3>
+      
+      <div id="list">
+        <h5>Just three steps:</h5>
+        <ol>
+          <li>Upload your items</li>
+          <li>Browse Swapp</li>
+          <li>Negotiate</li>
+        </ol>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <h3>Any questions?</h3>
+      <p>
+        Too bad!
+      </p>
+      <button class="button button-positive no-animation"
+              ng-click="startApp()" ng-if="slideIndex == 2">
+        Start using Swapp
+      </button>
+    </ion-slide>
+  </ion-slide-box>
+</ion-view>

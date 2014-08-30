@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.swappapp108785" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Swapp-app</name>
+<widget id="com.ionicframework.swapp" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Swapp</name>
   <description>
         An Ionic Framework and Cordova project.
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+  <author email="amir.hosseinirad@gmail.com" href="http://amir.pm/">
+      Amir HR
     </author>
   <content src="index.html"/>
+  <icon src="res/icon-4.png" />
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
