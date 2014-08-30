@@ -4,16 +4,16 @@ angular.module('swapp.controllers', [])
 
 .controller('openApp', function($scope, $state, $location, $window) {
   console.log(window.localStorage.fbtoken);
-  if(window.localStorage.fbtoken == "undefined"){
-    setTimeout(
-      function(){
-        $state.go('intro');
-      }, 1000 );
-  } else {
+  if(!$window.localStorage['fbtoken']){
     setTimeout(
       function(){
         window.location.hash = "#/swapp/home";
         window.location.reload();
+      }, 1000 );
+  } else {
+    setTimeout(
+      function(){
+        $state.go('intro');
       }, 1000 );
   }
 
