@@ -52,20 +52,32 @@ angular.module('swapp.controllers', [])
 
 .controller('LoginCtrl', function ($scope, $location, OpenFB) {
 
-    $scope.facebookLogin = function () {
-    	console.log("FB button clicked");
+    if(window.sessionStorage.fbtoken){
+      OpenFB.login('public_profile,email,read_stream,user_photos').then(
+          function () {
+              // $location.path('/app/person/me/feed');
+              // $location.path('/#/swapp/home');
+              window.location.hash = "#/swapp/home";
+              window.location.reload();
+              console.log("location");
+          },
+          function () {
+              alert('OpenFB login failed');
+          });
+    }
 
-        OpenFB.login('public_profile,email,read_stream,user_photos').then(
-            function () {
-                // $location.path('/app/person/me/feed');
-                // $location.path('/#/swapp/home');
-								window.location.hash = "#/swapp/home";
-								window.location.reload();
-					    	console.log("location");
-            },
-            function () {
-                alert('OpenFB login failed');
-            });
+    $scope.facebookLogin = function () {
+      OpenFB.login('public_profile,email,read_stream,user_photos').then(
+          function () {
+              // $location.path('/app/person/me/feed');
+              // $location.path('/#/swapp/home');
+  						window.location.hash = "#/swapp/home";
+  						window.location.reload();
+  			    	console.log("location");
+          },
+          function () {
+              alert('OpenFB login failed');
+          });
     };
 
 })
