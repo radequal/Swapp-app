@@ -3,16 +3,17 @@ angular.module('swapp.controllers', [])
 
 
 .controller('openApp', function($scope, $state, $location, $window) {
-  if(typeof window.localStorage.fbtoken === 'undefined'){
+  console.log(window.localStorage.fbtoken);
+  if(window.localStorage.fbtoken == "undefined"){
     setTimeout(
       function(){
-        window.location.hash = "#/swapp/home";
-        window.location.reload();
+        $state.go('intro');
       }, 1000 );
   } else {
     setTimeout(
       function(){
-        $state.go('intro')
+        window.location.hash = "#/swapp/home";
+        window.location.reload();
       }, 1000 );
   }
 
@@ -37,6 +38,20 @@ angular.module('swapp.controllers', [])
   // Called each time the slide changes
   $scope.slideChanged = function(index) {
     $scope.slideIndex = index;
+  };
+
+  $scope.facebookLogin = function () {
+    OpenFB.login('public_profile,email,read_stream,user_photos').then(
+        function () {
+            // $location.path('/app/person/me/feed');
+            // $location.path('/#/swapp/home');
+            window.location.hash = "#/swapp/home";
+            window.location.reload();
+            console.log("location");
+        },
+        function () {
+            alert('OpenFB login failed');
+        });
   };
 
 
@@ -70,19 +85,19 @@ angular.module('swapp.controllers', [])
 
 .controller('LoginCtrl', function ($scope, $location, OpenFB) {
 
-    $scope.facebookLogin = function () {
-      OpenFB.login('public_profile,email,read_stream,user_photos').then(
-          function () {
-              // $location.path('/app/person/me/feed');
-              // $location.path('/#/swapp/home');
-              window.location.hash = "#/swapp/home";
-              window.location.reload();
-              console.log("location");
-          },
-          function () {
-              alert('OpenFB login failed');
-          });
-    };
+    // $scope.facebookLogin = function () {
+    //   OpenFB.login('public_profile,email,read_stream,user_photos').then(
+    //       function () {
+    //           // $location.path('/app/person/me/feed');
+    //           // $location.path('/#/swapp/home');
+    //           window.location.hash = "#/swapp/home";
+    //           window.location.reload();
+    //           console.log("location");
+    //       },
+    //       function () {
+    //           alert('OpenFB login failed');
+    //       });
+    // };
 
 })
 

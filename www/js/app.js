@@ -11,7 +11,7 @@ angular.module('swappApp', ['ionic', 'openfb', 'ionic.contrib.ui.cards', 'swapp.
     });
 
     $rootScope.$on('$stateChangeStart', function(event, toState) {
-        if (toState.name !== "openApp" && toState.name !== "swappMenu.logout" && !$window.sessionStorage['fbtoken']) {
+        if (toState.name !== "openApp" && toState.name !== "swappMenu.logout" && !$window.localStorage['fbtoken']) {
             $state.go('openApp');
             event.preventDefault();
         }
