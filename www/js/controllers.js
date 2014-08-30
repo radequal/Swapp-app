@@ -1,7 +1,25 @@
 angular.module('swapp.controllers', [])
 
+
+
+.controller('openApp', function($scope, $state, $location, $window) {
+  if(typeof window.localStorage.fbtoken === 'undefined'){
+    setTimeout(
+      function(){
+        window.location.hash = "#/swapp/home";
+        window.location.reload();
+      }, 1000 );
+  } else {
+    setTimeout(
+      function(){
+        $state.go('intro')
+      }, 1000 );
+  }
+
+})
+
 .controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate, $location, OpenFB) {
- 
+
   // Called to navigate to the main app
   $scope.startApp = function() {
     console.log(window.location.hash);
@@ -52,7 +70,7 @@ angular.module('swapp.controllers', [])
 
 .controller('LoginCtrl', function ($scope, $location, OpenFB) {
 
-    if(window.sessionStorage.fbtoken){
+    $scope.facebookLogin = function () {
       OpenFB.login('public_profile,email,read_stream,user_photos').then(
           function () {
               // $location.path('/app/person/me/feed');
@@ -64,23 +82,19 @@ angular.module('swapp.controllers', [])
           function () {
               alert('OpenFB login failed');
           });
-    }
-
-    $scope.facebookLogin = function () {
-      OpenFB.login('public_profile,email,read_stream,user_photos').then(
-          function () {
-              // $location.path('/app/person/me/feed');
-              // $location.path('/#/swapp/home');
-  						window.location.hash = "#/swapp/home";
-  						window.location.reload();
-  			    	console.log("location");
-          },
-          function () {
-              alert('OpenFB login failed');
-          });
     };
 
 })
+
+.controller('Settings3Ctrl', function ($scope, $state, $location, OpenFB) {
+
+    $scope.facebookLogout = function () {
+      OpenFB.logout();
+      $state.go('openApp');
+    };
+
+})
+
 .controller('MainCtrl', function($scope, $http, OpenFB) {
 
   OpenFB.get('/me').success(function (user) {

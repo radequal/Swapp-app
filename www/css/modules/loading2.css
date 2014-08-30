@@ -1,0 +1,79 @@
+body {
+  background-color: transparent;
+  /*-webkit-transform: perspective(1400px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);*/
+  /*-webkit-transform-style: preserve-3d;*/
+}
+.gwd-img-6fq1 {
+  position: absolute;
+  width: 152px;
+  height: 152px;
+  left: 50%;
+  top: 50%;
+  margin-top: -76px;
+  margin-left: -76px;
+  -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  -webkit-transform-style: preserve-3d;
+}
+.gwd-div-uqh0 {
+  position: absolute;
+  height: 35px;
+  font-family:'Times New Roman';
+  text-align: left;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  margin-left: -50px;
+  margin-top: 78px;
+  opacity: 0;
+}
+.gwd-span-9b1l {
+  font-family: Arial;
+}
+.gwd-div-k8op {
+  text-align: center;
+}
+.gwd-span-y4j9 {
+  font-family: Arial;
+}
+@-webkit-keyframes gwd-gen-f1n0gwdanimation_gwd-keyframes {
+  0% {
+    opacity: 0;
+    -webkit-animation-timing-function: ease-out;
+  }
+  50% {
+    opacity: 1;
+    -webkit-animation-timing-function: ease-in-out;
+  }
+  100% {
+    opacity: 0;
+    -webkit-animation-timing-function: ease-in-out;
+  }
+}
+body .gwd-gen-f1n0gwdanimation {
+  -webkit-animation: gwd-gen-f1n0gwdanimation_gwd-keyframes 0.8s linear 0s infinite normal forwards;
+}
+@-webkit-keyframes gwd-gen-guv6gwdanimation_gwd-keyframes {
+  0% {
+    -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    -webkit-animation-timing-function: ease-out;
+  }
+  25% {
+    -webkit-transform: matrix3d(0.9396926208, 0.3420201433, 0, 0, -0.3420201433, 0.9396926208, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    -webkit-animation-timing-function: ease-in-out;
+  }
+  50% {
+    -webkit-transform: matrix3d(0.9396926208, -0.3420201433, 0, 0, 0.3420201433, 0.9396926208, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    -webkit-animation-timing-function: ease-out;
+  }
+  75% {
+    -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    -webkit-animation-timing-function: linear;
+  }
+  100% {
+    -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    -webkit-animation-timing-function: linear;
+  }
+}
+body .gwd-gen-guv6gwdanimation {
+  -webkit-animation: gwd-gen-guv6gwdanimation_gwd-keyframes 1.2s linear 0s infinite normal forwards;
+}

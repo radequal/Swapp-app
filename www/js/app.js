@@ -11,8 +11,8 @@ angular.module('swappApp', ['ionic', 'openfb', 'ionic.contrib.ui.cards', 'swapp.
     });
 
     $rootScope.$on('$stateChangeStart', function(event, toState) {
-        if (toState.name !== "intro" && toState.name !== "swappMenu.logout" && !$window.sessionStorage['fbtoken']) {
-            $state.go('intro');
+        if (toState.name !== "openApp" && toState.name !== "swappMenu.logout" && !$window.sessionStorage['fbtoken']) {
+            $state.go('openApp');
             event.preventDefault();
         }
     });
@@ -27,17 +27,23 @@ angular.module('swappApp', ['ionic', 'openfb', 'ionic.contrib.ui.cards', 'swapp.
 
   $stateProvider
 
-    .state('intro', {
+    .state('openApp', {
       url: '/',
+      templateUrl: 'templates/open-app.html',
+      controller: 'openApp'
+    })
+
+    .state('intro', {
+      url: '/intro',
       templateUrl: 'templates/intro.html',
       controller: 'IntroCtrl'
     })
 
-    .state('login', {
-      url: '/',
-      templateUrl: 'templates/login.html',
-      controller: 'LoginCtrl'
-    })
+    // .state('login', {
+    //   url: '/',
+    //   templateUrl: 'templates/login.html',
+    //   controller: 'LoginCtrl'
+    // })
 
 
     // SWAPP MAIN MENU
@@ -91,7 +97,7 @@ angular.module('swappApp', ['ionic', 'openfb', 'ionic.contrib.ui.cards', 'swapp.
       views: {
         'swappMenuContent': {
           templateUrl: 'templates/views/settings3.html',
-          controller: 'SettingsCtrl'
+          controller: 'Settings3Ctrl'
         }
       }
     })
