@@ -113,7 +113,15 @@ angular.module('swapp.controllers', [])
 
 .controller('MainCtrl', function($scope, $http, OpenFB, $state) {
 
+  document.addEventListener("deviceready", onDeviceReady, false);
+
+  function onDeviceReady(){
+    getData();
+    sendDataToSite();
+    getItems();
+  }
   // window.sessionStorage.clear();
+
 
   // Set category list
   $scope.main_cateogry_items = [
@@ -150,75 +158,84 @@ angular.module('swapp.controllers', [])
   };
 
 
-  // Get user details
-  if( !JSON.parse(window.sessionStorage.getItem('FBuser')) ) {
-    OpenFB.get('/me').success(function (user) {
-        $scope.user = user;
-        window.sessionStorage.setItem('FBuser', JSON.stringify(user));
-    });
-  } else {
-    $scope.user = JSON.parse(window.sessionStorage.getItem('FBuser'))
-  }
-  window.FBuser = JSON.parse(window.sessionStorage.getItem('FBuser'));
-
-  // Get cover photo
-  if( !JSON.parse(window.sessionStorage.getItem('FBcover')) ) {
-    OpenFB.get('/me?fields=cover').success(function (data) {
-        $scope.cover = data.cover.source;
-        window.sessionStorage.setItem('FBcover', JSON.stringify(data.cover.source));
-    });
-  } else {
-    $scope.cover = JSON.parse(window.sessionStorage.getItem('FBcover'));
-  }
-
-  // Get profile picture
-  if( !JSON.parse(window.sessionStorage.getItem('FBpp')) ) {
-    OpenFB.get('/me/picture?redirect=0&height=80&type=normal&width=80').success(function (data) {
-        $scope.profilePicture = data.data.url;
-        window.sessionStorage.setItem('FBpp', JSON.stringify(data.data.url));
-    });
-  } else {
-    $scope.profilePicture = JSON.parse(window.sessionStorage.getItem('FBpp'));
-  }
-
-  // Get geo location
-  if( !JSON.parse(window.sessionStorage.getItem('geo_object')) ) {
-    var geoLocationSuccess = function(geo_object){
-        window.geo = geo_object.coords.latitude + ',' + geo_object.coords.longitude;
-        window.sessionStorage.setItem('geo_object', JSON.stringify(geo_object));
+  function getData(){
+    // Get user details
+    if( !JSON.parse(window.sessionStorage.getItem('FBuser')) ) {
+      OpenFB.get('/me').success(function (user) {
+          $scope.user = user;
+          window.sessionStorage.setItem('FBuser', JSON.stringify(user));
+      });
+    } else {
+      $scope.user = JSON.parse(window.sessionStorage.getItem('FBuser'))
     }
-    navigator.geolocation.getCurrentPosition(geoLocationSuccess);
-  } else {
-    geo_object = JSON.parse(window.sessionStorage.getItem('geo_object'));
-    window.geo = geo_object.coords.latitude + ',' + geo_object.coords.longitude;
-  }
+    window.FBuser = JSON.parse(window.sessionStorage.getItem('FBuser'));
 
+    // Get cover photo
+    if( !JSON.parse(window.sessionStorage.getItem('FBcover')) ) {
+      OpenFB.get('/me?fields=cover').success(function (data) {
+          $scope.cover = data.cover.source;
+          window.sessionStorage.setItem('FBcover', JSON.stringify(data.cover.source));
+      });
+    } else {
+      $scope.cover = JSON.parse(window.sessionStorage.getItem('FBcover'));
+    }
 
+    // Get profile picture
+    if( !JSON.parse(window.sessionStorage.getItem('FBpp')) ) {
+      OpenFB.get('/me/picture?redirect=0&height=80&type=normal&width=80').success(function (data) {
+          $scope.profilePicture = data.data.url;
+          window.sessionStorage.setItem('FBpp', JSON.stringify(data.data.url));
+      });
+    } else {
+      $scope.profilePicture = JSON.parse(window.sessionStorage.getItem('FBpp'));
+    }
 
-  // Send details to Swapp Site for storing per session
-  // window.sessionStorage.removeItem('sent_to_site');
-  if( !window.sessionStorage.getItem('sent_to_site') ) {
-    $http({
-      url: 'http://swapp-site.appspot.com/app/save/main', 
-      // url: 'http://localhost:9080/app/save/main', 
-      method: "POST",
-      params: {
-        userId: window.FBuser.id,
-        fb_user: JSON.parse(window.sessionStorage.getItem('FBuser')),
-        fb_pp_url: JSON.parse(window.sessionStorage.getItem('FBpp')),
-        fb_cover_url: JSON.parse(window.sessionStorage.getItem('FBcover')),
-        geo_object: JSON.parse(window.sessionStorage.getItem('geo_object'))
+    // Get geo location
+    if( !JSON.parse(window.sessionStorage.getItem('geo_object')) ) {
+      var geoLocationSuccess = function(geo_object){
+          window.geo = geo_object.coords.latitude + ',' + geo_object.coords.longitude;
+          window.sessionStorage.setItem('geo_object', JSON.stringify(geo_object));
       }
-    })
-    window.sessionStorage.setItem('sent_to_site', true);
+      navigator.geolocation.getCurrentPosition(geoLocationSuccess);
+    } else {
+      geo_object = JSON.parse(window.sessionStorage.getItem('geo_object'));
+      window.geo = geo_object.coords.latitude + ',' + geo_object.coords.longitude;
+    }
   }
 
-  // Get items the first time after loading in all relevant FB and geo details (above)
-  getItems();
+
+  function sendDataToSite(){
+    // Send details to Swapp Site for storing per session
+    // window.sessionStorage.removeItem('sent_to_site');
+    if( !window.sessionStorage.getItem('sent_to_site') ) {
+      $http({
+        url: 'http://swapp-site.appspot.com/app/save/main', 
+        // url: 'http://localhost:9080/app/save/main', 
+        method: "POST",
+        params: {
+          userId: window.FBuser.id,
+          fb_user: JSON.parse(window.sessionStorage.getItem('FBuser')),
+          fb_pp_url: JSON.parse(window.sessionStorage.getItem('FBpp')),
+          fb_cover_url: JSON.parse(window.sessionStorage.getItem('FBcover')),
+          geo_object: JSON.parse(window.sessionStorage.getItem('geo_object'))
+        }
+      })
+      window.sessionStorage.setItem('sent_to_site', true);
+    }
+  }
 
   // Get items function
   function getItems(){
     // TODO: destroy cards
+
+    // TODO: reload icon
+    document.getElementById("cards_loading_icon").style.display = "block";
+    setTimeout(
+      function(){
+        document.getElementById("cards_loading_icon").style.display = "none";
+      }, 1000
+    );
+
 
     // Get new items
     $http({
@@ -243,7 +260,7 @@ angular.module('swapp.controllers', [])
 
 
 .controller('ProfileCtrl', function($scope) {
-  
+
 })
 
 .controller('MenuCtrl', function($scope, $ionicSideMenuDelegate) {

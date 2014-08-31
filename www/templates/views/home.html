@@ -8,6 +8,9 @@
 		    </div>
 		    <select ng-model="selectedCategory" ng-change="cat_changed(selectedCategory.name)" ng-options="cat.name for cat in main_cateogry_items"></select>
 		  </label>
+			<div id="cards_loading_icon" class="item" style="display: none; border: none; border-top: 1px solid #ddd; text-align:center">
+				<i class="icon ion-ios7-reloading"></i> Loading
+			</div>
 		</div>
 
 		<div animation="slide-left-right-ios7" no-scroll>
