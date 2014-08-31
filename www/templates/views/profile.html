@@ -1,6 +1,16 @@
-  <ion-view left-buttons="leftButtons">
-    <ion-content>
-      <br><br>
-      <h1>Profile settings</h1>
-    </ion-content>
-  </ion-view>
+<ion-view left-buttons="leftButtons">
+  <ion-content>
+
+		<div class="list">
+
+		    <div class="item item-thumbnail-left" href="#">
+		      <img src="{{ profilePicture }}">
+		      <h2>{{ user.name }}</h2>
+		      <p>{{ user.email }}</p>
+		    </div>
+
+		</div>
+
+
+  </ion-content>
+</ion-view>

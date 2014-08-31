@@ -6,29 +6,7 @@
 		    <div class="input-label">
 		      Category
 		    </div>
-		    <select>
-					<option selected>-- Pick a category --</option>
-					<option>Auto</option>
-					<option>Beauty &amp; Toiletries</option>
-					<option>Books</option>
-					<option>Photography</option>
-					<option>Clothes &amp; Accessories</option>
-					<option>Collectibles</option>
-					<option>DIY</option>
-					<option>Electronics</option>
-					<option>Home &amp; Garden</option>
-					<option>Jewelry</option>
-					<option>Luggage &amp; Travel Accessories</option>
-					<option>Movies</option>
-					<option>Music &amp; Instruments</option>
-					<option>Stationery</option>
-					<option>Shoes, Handbags &amp; Sunglasses</option>
-					<option>Sports</option>
-					<option>Toys</option>
-					<option>Video Games</option>
-					<option>Watches</option>
-					<option>Other</option>
-		    </select>
+		    <select ng-model="selectedCategory" ng-change="cat_changed(selectedCategory.name)" ng-options="cat.name for cat in main_cateogry_items"></select>
 		  </label>
 		</div>
 

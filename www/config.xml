@@ -23,7 +23,11 @@
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackupWebStorage" value="none"/>
 
+  <gap:plugin name="org.apache.cordova.device" />
+  <gap:plugin name="org.apache.cordova.console" />
   <gap:plugin name="org.apache.cordova.inappbrowser" version="0.1.0" />
+  <gap:plugin name="org.apache.cordova.geolocation" version="0.3.2" />
+  <gap:plugin name="org.apache.cordova.network-information" version="0.2.3" />
 
   <gap:platform name="ios" />
   <gap:platform name="android" />

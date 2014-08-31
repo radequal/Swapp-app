@@ -3,8 +3,7 @@ angular.module('swapp.controllers', [])
 
 
 .controller('openApp', function($scope, $state, $location, $window) {
-  console.log(window.localStorage.fbtoken);
-  if(!$window.localStorage['fbtoken']){
+  if($window.localStorage['fbtoken'] != "undefined"){
     setTimeout(
       function(){
         window.location.hash = "#/swapp/home";
@@ -83,24 +82,6 @@ angular.module('swapp.controllers', [])
   // };
 })
 
-.controller('LoginCtrl', function ($scope, $location, OpenFB) {
-
-    // $scope.facebookLogin = function () {
-    //   OpenFB.login('public_profile,email,read_stream,user_photos').then(
-    //       function () {
-    //           // $location.path('/app/person/me/feed');
-    //           // $location.path('/#/swapp/home');
-    //           window.location.hash = "#/swapp/home";
-    //           window.location.reload();
-    //           console.log("location");
-    //       },
-    //       function () {
-    //           alert('OpenFB login failed');
-    //       });
-    // };
-
-})
-
 .controller('Settings3Ctrl', function ($scope, $state, $location, OpenFB) {
 
     $scope.facebookLogout = function () {
@@ -110,20 +91,160 @@ angular.module('swapp.controllers', [])
 
 })
 
-.controller('MainCtrl', function($scope, $http, OpenFB) {
+.controller('LoginCtrl', function ($scope, $location, OpenFB) {
 
-  OpenFB.get('/me').success(function (user) {
-      $scope.user = user;
-  });
-  OpenFB.get('/me?fields=cover').success(function (data) {
-      $scope.cover = data.cover.source;
-  });
-  OpenFB.get('/me/picture?redirect=0&height=80&type=normal&width=80').success(function (data) {
-      $scope.profilePicture = data.data.url;
-  });
+    $scope.facebookLogin = function () {
+      console.log("FB button clicked");
+
+        OpenFB.login('public_profile,email,read_stream,user_photos').then(
+            function () {
+                // $location.path('/app/person/me/feed');
+                // $location.path('/#/swapp/home');
+                window.location.hash = "#/swapp/home";
+                window.location.reload();
+                console.log("location");
+            },
+            function () {
+                alert('OpenFB login failed');
+            });
+    };
+
+})
+
+.controller('MainCtrl', function($scope, $http, OpenFB, $state) {
+
+  // window.sessionStorage.clear();
+
+  // Set category list
+  $scope.main_cateogry_items = [
+    {name:'--- Pick a category ---'},
+    {name:'Auto'},
+    {name:'Beauty & Toiletries'},
+    {name:'Books'},
+    {name:'Photography'},
+    {name:'Clothes & Accessories'},
+    {name:'Collectibles'},
+    {name:'DIY'},
+    {name:'Electronics'},
+    {name:'Home & Garden'},
+    {name:'Jewelry'},
+    {name:'Luggage & Travel Accessories'},
+    {name:'Movies'},
+    {name:'Music & Instruments'},
+    {name:'Stationery'},
+    {name:'Shoes, Handbags & Sunglasses'},
+    {name:'Sports'},
+    {name:'Toys'},
+    {name:'Video Games'},
+    {name:'Watches'},
+    {name:'Other'}
+  ];
+  // Set active category to first item
+  $scope.selectedCategory = $scope.main_cateogry_items[0];
+
+  // When category is changed, get new items
+  $scope.cat_changed = function(cat_name){
+    window.active_cat_name = cat_name
+    // $state.go($state.current, {}, {reload: true});
+    getItems();
+  };
+
+
+  // Get user details
+  if( !JSON.parse(window.sessionStorage.getItem('FBuser')) ) {
+    OpenFB.get('/me').success(function (user) {
+        $scope.user = user;
+        window.sessionStorage.setItem('FBuser', JSON.stringify(user));
+    });
+  } else {
+    $scope.user = JSON.parse(window.sessionStorage.getItem('FBuser'))
+  }
+  window.FBuser = JSON.parse(window.sessionStorage.getItem('FBuser'));
+
+  // Get cover photo
+  if( !JSON.parse(window.sessionStorage.getItem('FBcover')) ) {
+    OpenFB.get('/me?fields=cover').success(function (data) {
+        $scope.cover = data.cover.source;
+        window.sessionStorage.setItem('FBcover', JSON.stringify(data.cover.source));
+    });
+  } else {
+    $scope.cover = JSON.parse(window.sessionStorage.getItem('FBcover'));
+  }
+
+  // Get profile picture
+  if( !JSON.parse(window.sessionStorage.getItem('FBpp')) ) {
+    OpenFB.get('/me/picture?redirect=0&height=80&type=normal&width=80').success(function (data) {
+        $scope.profilePicture = data.data.url;
+        window.sessionStorage.setItem('FBpp', JSON.stringify(data.data.url));
+    });
+  } else {
+    $scope.profilePicture = JSON.parse(window.sessionStorage.getItem('FBpp'));
+  }
+
+  // Get geo location
+  if( !JSON.parse(window.sessionStorage.getItem('geo_object')) ) {
+    var geoLocationSuccess = function(geo_object){
+        window.geo = geo_object.coords.latitude + ',' + geo_object.coords.longitude;
+        window.sessionStorage.setItem('geo_object', JSON.stringify(geo_object));
+    }
+    navigator.geolocation.getCurrentPosition(geoLocationSuccess);
+  } else {
+    geo_object = JSON.parse(window.sessionStorage.getItem('geo_object'));
+    window.geo = geo_object.coords.latitude + ',' + geo_object.coords.longitude;
+  }
+
+
+
+  // Send details to Swapp Site for storing per session
+  // window.sessionStorage.removeItem('sent_to_site');
+  if( !window.sessionStorage.getItem('sent_to_site') ) {
+    $http({
+      url: 'http://swapp-site.appspot.com/app/save/main', 
+      // url: 'http://localhost:9080/app/save/main', 
+      method: "POST",
+      params: {
+        userId: window.FBuser.id,
+        fb_user: JSON.parse(window.sessionStorage.getItem('FBuser')),
+        fb_pp_url: JSON.parse(window.sessionStorage.getItem('FBpp')),
+        fb_cover_url: JSON.parse(window.sessionStorage.getItem('FBcover')),
+        geo_object: JSON.parse(window.sessionStorage.getItem('geo_object'))
+      }
+    })
+    window.sessionStorage.setItem('sent_to_site', true);
+  }
+
+  // Get items the first time after loading in all relevant FB and geo details (above)
+  getItems();
+
+  // Get items function
+  function getItems(){
+    // TODO: destroy cards
+
+    // Get new items
+    $http({
+      url: 'http://swapp-site.appspot.com/app/request/items', 
+      // url: 'http://localhost:9080/app/request/items', 
+      method: "GET",
+      params: {
+        userId: window.FBuser.id,
+        geo: window.geo,
+        category: window.active_cat_name,
+      }
+    }).success(
+      function(data, status, headers, config){
+        console.log(data.items);
+        // TODO: load in new cards
+      }
+    );
+  }
+
 })
 
 
+
+.controller('ProfileCtrl', function($scope) {
+  
+})
 
 .controller('MenuCtrl', function($scope, $ionicSideMenuDelegate) {
 })
